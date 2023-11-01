@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ values.name }}
+{% endblock %}
+
+{% block main %}
+    <div class="mb-4">
+        <h3>Get the current price of a stock</h3>
+    </div>
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol"
+            placeholder="Stock Symbol (e.g. NFLX)" type="text">
+        </div>
+
+        <button class="btn btn-bd-primary" type="submit">Look Up</button>
+    </form>
+    <div class="mb-4 mt-4">
+        <h3>A share of {{ values.name | e }} costs {{ values.price | usd }}.</h3>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,130 @@
+/* Set the background color for the body */
+body {
+    background: #e9f2ec;
+}
+
+/* Define styles for the brand in the navbar */
+nav .navbar-brand {
+    font-size: xx-large;
+}
+
+/* Define colors for different parts of the brand */
+nav .navbar-brand .blue {
+    color: #537fbe;
+}
+nav .navbar-brand .red {
+    color: #e9f2ec;
+}
+nav .navbar-brand .yellow {
+    color: #f5b82e;
+}
+nav .navbar-brand .green {
+    color: #2e944b;
+}
+
+/* Define styles for the primary button */
+.btn-bd-primary {
+    font-weight: 600;
+    color: #e9f2ec;
+    background-color: #7eb293;
+    border-color: #fff;
+}
+
+/* Define styles for the primary button when hovered */
+.btn-bd-primary:hover {
+    color: #e9f2ec;
+    background-color: #7eb142;
+    border-color: #fff;
+}
+
+/* Define styles for the primary button when focused */
+.btn-bd-primary:focus {
+    box-shadow: 0 0 0 0.2rem rgba(2, 189, 36, 0.575);
+}
+
+/* Define styles for the primary button when active */
+.btn-bd-primary:active {
+    color: #e9f2ec;
+    background-color: #7eb200;
+    border-color: #fff;
+}
+
+/* Define styles for dropdown items when hovered */
+.dropdown-item:hover {
+    color: #e9f2ec;
+    background-color: #7eb142;
+}
+
+/* Define styles for hidden elements with transitions */
+.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateX(-100%);
+    transition: all 1s;
+}
+
+/* Define styles for shown elements with transitions */
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+}
+
+/* Add transition delays to specific elements */
+.but:nth-child(2) {
+    transition-delay: 200ms;
+}
+.but:nth-child(3) {
+    transition-delay: 400ms;
+}
+
+/* Disable transitions for elements when reduced motion is preferred */
+@media (prefers-reduced-motion) {
+    .hidden {
+        transition: none;
+    }
+}
+
+/* Define styles for flip effect elements */
+.flip {
+    perspective: 750px;
+    width: 550px;
+    height: 550px;
+}
+
+.flip-inner {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+/* Apply flip effect on hover */
+.flip:hover .flip-inner {
+    transform: rotateY(180deg);
+}
+
+/* Define front and back styles for the flip effect */
+.flip-front, .flip-back {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+
+/* Styles for the front side of the flip effect */
+.flip-front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styles for the back side of the flip effect */
+.flip-back {
+    overflow: auto;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    transform: rotateY(180deg);
+}

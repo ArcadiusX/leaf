@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <div class="mb-4">
+        <h3><b>Stock Portfolio</b></h3>
+        <br>
+        <h5>Cash: {{ cash|usd }}</h5>
+        <br>
+        <h4>Net assets: {{ (cash+holdings)|usd }}</h4>
+        {% if (cash+holdings-10000) > 0 %}
+        <h6 class="text-success">+{{ (cash+holdings-10000)|usd }} ({{ (((cash+holdings-10000)/10000)*100)|tru }}%)</h6>
+        {% elif (cash+holdings-10000) < 0 %}
+        <h6 class="text-danger">{{ (cash+holdings-10000)|usd }} ({{ (((cash+holdings-10000)/10000)*100)|tru }}%)</h6>
+        {% else %}
+        <!-- Empty else block, don't show a change if no change -->
+        {% endif %}
+        <br>
+
+        <form action="/" method="get">
+          <button class="btn btn-bd-primary" type="submit">Refresh</button>
+        </form>
+    </div>
+    <div class="container mx-6">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Stock</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Current Price</th>
+            <th scope="col">Holdings</th>
+            <th scope="col">Gain/Loss</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            {% for dict in values %}
+            <tr>
+                <th scope="row">{{ dict['stock']|e }}</th>
+                <td>{{ dict['shares']|e }}</td>
+                <td>{{ prices[loop.index0]|usd }}</td>
+                <td>{{ (prices[loop.index0]*dict['shares'])|usd }}</td>
+
+                {% if net[loop.index0] < 0 %}
+                <td><span class="text-danger">{{ net[loop.index0]|usd }}</span> ({{ roi[loop.index0]|tru }}%)</td>
+                {% elif net[loop.index0]>0 %}
+                <td><span class="text-success">{{ net[loop.index0]|usd }}</span> ({{ roi[loop.index0]|tru }}%)</td>
+                {% else %}
+                <td>{{ net[loop.index0]|usd }} ({{ roi[loop.index0]|tru }}%)</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

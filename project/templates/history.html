@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="mb-4">
+        <h3>Transaction History</h3>
+        <br>
+
+    </div>
+    <div class="container mx-6">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Stock</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Price</th>
+            <th scope="col">Action</th>
+            <th scope="col">Time</th>
+          </tr>
+        </thead>
+        <tbody>
+
+            {% for dict in values %}
+            <tr>
+                <th scope="row">{{ dict['stock']|e }}</th>
+
+                <td>{{ dict['shares']|e }}</td>
+                <td>{{ (dict['price']*dict['shares'])|usd }}</td>
+                <td>{{ dict['action']|e }}</td>
+                <td>{{ dict['time']|e }}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+      </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Short
+{% endblock %}
+
+{% block main %}
+    <div class="mb-4">
+        <h3>Short a stock</h3>
+    </div>
+    <form action="/short" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol"
+            placeholder="Stock Symbol (e.g. NFLX)" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="shares" name="shares"
+            placeholder="Shares" type="number">
+        </div>
+
+        <button class="btn btn-bd-primary" type="submit">Short</button>
+    </form>
+{% endblock %}

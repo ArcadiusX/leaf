@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <div class="mb-4">
+        <h3>Sell a stock</h3>
+    </div>
+    <form action="/sell" method="post">
+        <div class="mb-3">
+
+            <select autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol"
+            placeholder="Stock Symbol (e.g. NFLX)">
+            <option value="" disabled selected>Select stock</option>
+                {% for dict in stocks %}
+                <option value="{{ dict['stock'] }}">
+                    {{ dict['stock'] }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="shares" name="shares"
+            placeholder="Shares" type="number">
+        </div>
+
+        <button class="btn btn-bd-primary" type="submit">Sell</button>
+    </form>
+{% endblock %}
